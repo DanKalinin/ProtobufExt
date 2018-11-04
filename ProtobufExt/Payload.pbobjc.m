@@ -25,33 +25,33 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-#pragma mark - PB3PayloadRoot
+#pragma mark - GPBEPayloadRoot
 
-@implementation PB3PayloadRoot
+@implementation GPBEPayloadRoot
 
 // No extensions in the file and none of the imports (direct or indirect)
 // defined extensions, so no need to generate +extensionRegistry.
 
 @end
 
-#pragma mark - PB3PayloadRoot_FileDescriptor
+#pragma mark - GPBEPayloadRoot_FileDescriptor
 
-static GPBFileDescriptor *PB3PayloadRoot_FileDescriptor(void) {
+static GPBFileDescriptor *GPBEPayloadRoot_FileDescriptor(void) {
   // This is called by +initialize so there is no need to worry
   // about thread safety of the singleton.
   static GPBFileDescriptor *descriptor = NULL;
   if (!descriptor) {
     GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
-    descriptor = [[GPBFileDescriptor alloc] initWithPackage:@"PB3"
-                                                 objcPrefix:@"PB3"
+    descriptor = [[GPBFileDescriptor alloc] initWithPackage:@"GPBE"
+                                                 objcPrefix:@"GPBE"
                                                      syntax:GPBFileSyntaxProto3];
   }
   return descriptor;
 }
 
-#pragma mark - PB3Payload
+#pragma mark - GPBEPayload
 
-@implementation PB3Payload
+@implementation GPBEPayload
 
 @dynamic type;
 @dynamic serial;
@@ -59,14 +59,14 @@ static GPBFileDescriptor *PB3PayloadRoot_FileDescriptor(void) {
 @dynamic error;
 @dynamic hasMessage, message;
 
-typedef struct PB3Payload__storage_ {
+typedef struct GPBEPayload__storage_ {
   uint32_t _has_storage_[1];
   uint32_t type;
   NSString *error;
   GPBAny *message;
   int64_t serial;
   int64_t responseSerial;
-} PB3Payload__storage_;
+} GPBEPayload__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -77,56 +77,56 @@ typedef struct PB3Payload__storage_ {
       {
         .name = "type",
         .dataTypeSpecific.className = NULL,
-        .number = PB3Payload_FieldNumber_Type,
+        .number = GPBEPayload_FieldNumber_Type,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(PB3Payload__storage_, type),
+        .offset = (uint32_t)offsetof(GPBEPayload__storage_, type),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeUInt32,
       },
       {
         .name = "serial",
         .dataTypeSpecific.className = NULL,
-        .number = PB3Payload_FieldNumber_Serial,
+        .number = GPBEPayload_FieldNumber_Serial,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(PB3Payload__storage_, serial),
+        .offset = (uint32_t)offsetof(GPBEPayload__storage_, serial),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeInt64,
       },
       {
         .name = "responseSerial",
         .dataTypeSpecific.className = NULL,
-        .number = PB3Payload_FieldNumber_ResponseSerial,
+        .number = GPBEPayload_FieldNumber_ResponseSerial,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(PB3Payload__storage_, responseSerial),
+        .offset = (uint32_t)offsetof(GPBEPayload__storage_, responseSerial),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeInt64,
       },
       {
         .name = "error",
         .dataTypeSpecific.className = NULL,
-        .number = PB3Payload_FieldNumber_Error,
+        .number = GPBEPayload_FieldNumber_Error,
         .hasIndex = 3,
-        .offset = (uint32_t)offsetof(PB3Payload__storage_, error),
+        .offset = (uint32_t)offsetof(GPBEPayload__storage_, error),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "message",
         .dataTypeSpecific.className = GPBStringifySymbol(GPBAny),
-        .number = PB3Payload_FieldNumber_Message,
+        .number = GPBEPayload_FieldNumber_Message,
         .hasIndex = 4,
-        .offset = (uint32_t)offsetof(PB3Payload__storage_, message),
+        .offset = (uint32_t)offsetof(GPBEPayload__storage_, message),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[PB3Payload class]
-                                     rootClass:[PB3PayloadRoot class]
-                                          file:PB3PayloadRoot_FileDescriptor()
+        [GPBDescriptor allocDescriptorForClass:[GPBEPayload class]
+                                     rootClass:[GPBEPayloadRoot class]
+                                          file:GPBEPayloadRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(PB3Payload__storage_)
+                                   storageSize:sizeof(GPBEPayload__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;

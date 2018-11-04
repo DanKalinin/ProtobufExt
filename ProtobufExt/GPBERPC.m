@@ -55,7 +55,7 @@
         } else {
             [self updateProgress:2];
             
-            PB3Payload *payload = [PB3Payload parseFromData:payloadData error:nil];
+            GPBEPayload *payload = [GPBEPayload parseFromData:payloadData error:nil];
             self.payload.type = payload.type;
             self.payload.serial = payload.serial;
             self.payload.responseSerial = payload.responseSerial;
@@ -107,7 +107,7 @@
     [self updateState:HLPOperationStateDidBegin];
     [self updateProgress:0];
     
-    PB3Payload *payload = PB3Payload.message;
+    GPBEPayload *payload = GPBEPayload.message;
     payload.type = self.payload.type;
     payload.serial = self.payload.serial;
     payload.responseSerial = self.payload.responseSerial;
@@ -222,7 +222,7 @@
         } else if (self.reading.error) {
             self.error = self.reading.error;
         } else {
-            PB3Payload *payload = [PB3Payload parseFromData:self.reading.data error:nil];
+            GPBEPayload *payload = [GPBEPayload parseFromData:self.reading.data error:nil];
             self.type = payload.type;
             self.serial = payload.serial;
             self.responseSerial = payload.responseSerial;
@@ -265,7 +265,7 @@
 @implementation GPBERPCWriting
 
 - (void)write {
-    PB3Payload *payload = PB3Payload.message;
+    GPBEPayload *payload = GPBEPayload.message;
     payload.type = self.type;
     payload.serial = self.serial;
     payload.responseSerial = self.responseSerial;

@@ -31,7 +31,7 @@ CF_EXTERN_C_BEGIN
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - PB3PayloadRoot
+#pragma mark - GPBEPayloadRoot
 
 /**
  * Exposes the extension registry for this file.
@@ -43,20 +43,20 @@ NS_ASSUME_NONNULL_BEGIN
  * which is a @c GPBExtensionRegistry that includes all the extensions defined by
  * this file and all files that it depends on.
  **/
-@interface PB3PayloadRoot : GPBRootObject
+@interface GPBEPayloadRoot : GPBRootObject
 @end
 
-#pragma mark - PB3Payload
+#pragma mark - GPBEPayload
 
-typedef GPB_ENUM(PB3Payload_FieldNumber) {
-  PB3Payload_FieldNumber_Type = 1,
-  PB3Payload_FieldNumber_Serial = 2,
-  PB3Payload_FieldNumber_ResponseSerial = 3,
-  PB3Payload_FieldNumber_Error = 4,
-  PB3Payload_FieldNumber_Message = 5,
+typedef GPB_ENUM(GPBEPayload_FieldNumber) {
+  GPBEPayload_FieldNumber_Type = 1,
+  GPBEPayload_FieldNumber_Serial = 2,
+  GPBEPayload_FieldNumber_ResponseSerial = 3,
+  GPBEPayload_FieldNumber_Error = 4,
+  GPBEPayload_FieldNumber_Message = 5,
 };
 
-@interface PB3Payload : GPBMessage
+@interface GPBEPayload : GPBMessage
 
 @property(nonatomic, readwrite) uint32_t type;
 

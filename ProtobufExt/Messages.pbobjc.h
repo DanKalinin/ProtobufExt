@@ -27,58 +27,58 @@
 
 CF_EXTERN_C_BEGIN
 
-@class PB3Load;
-@class PB3Person;
+@class GPBELoad;
+@class GPBEPerson;
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - Enum PB3Load_Operation
+#pragma mark - Enum GPBELoad_Operation
 
-typedef GPB_ENUM(PB3Load_Operation) {
+typedef GPB_ENUM(GPBELoad_Operation) {
   /**
    * Value used if any message's field encounters a value that is not defined
    * by this enum. The message will also have C functions to get/set the rawValue
    * of the field.
    **/
-  PB3Load_Operation_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
-  PB3Load_Operation_OperationNone = 0,
-  PB3Load_Operation_OperationUp = 1,
-  PB3Load_Operation_OperationDown = 2,
+  GPBELoad_Operation_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
+  GPBELoad_Operation_OperationNone = 0,
+  GPBELoad_Operation_OperationUp = 1,
+  GPBELoad_Operation_OperationDown = 2,
 };
 
-GPBEnumDescriptor *PB3Load_Operation_EnumDescriptor(void);
+GPBEnumDescriptor *GPBELoad_Operation_EnumDescriptor(void);
 
 /**
  * Checks to see if the given value is defined by the enum or was not known at
  * the time this source was generated.
  **/
-BOOL PB3Load_Operation_IsValidValue(int32_t value);
+BOOL GPBELoad_Operation_IsValidValue(int32_t value);
 
-#pragma mark - Enum PB3Load_Command
+#pragma mark - Enum GPBELoad_Command
 
-typedef GPB_ENUM(PB3Load_Command) {
+typedef GPB_ENUM(GPBELoad_Command) {
   /**
    * Value used if any message's field encounters a value that is not defined
    * by this enum. The message will also have C functions to get/set the rawValue
    * of the field.
    **/
-  PB3Load_Command_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
-  PB3Load_Command_CommandNone = 0,
-  PB3Load_Command_CommandBegin = 1,
-  PB3Load_Command_CommandProcess = 2,
-  PB3Load_Command_CommandEnd = 3,
-  PB3Load_Command_CommandCancel = 4,
+  GPBELoad_Command_GPBUnrecognizedEnumeratorValue = kGPBUnrecognizedEnumeratorValue,
+  GPBELoad_Command_CommandNone = 0,
+  GPBELoad_Command_CommandBegin = 1,
+  GPBELoad_Command_CommandProcess = 2,
+  GPBELoad_Command_CommandEnd = 3,
+  GPBELoad_Command_CommandCancel = 4,
 };
 
-GPBEnumDescriptor *PB3Load_Command_EnumDescriptor(void);
+GPBEnumDescriptor *GPBELoad_Command_EnumDescriptor(void);
 
 /**
  * Checks to see if the given value is defined by the enum or was not known at
  * the time this source was generated.
  **/
-BOOL PB3Load_Command_IsValidValue(int32_t value);
+BOOL GPBELoad_Command_IsValidValue(int32_t value);
 
-#pragma mark - PB3MessagesRoot
+#pragma mark - GPBEMessagesRoot
 
 /**
  * Exposes the extension registry for this file.
@@ -90,26 +90,26 @@ BOOL PB3Load_Command_IsValidValue(int32_t value);
  * which is a @c GPBExtensionRegistry that includes all the extensions defined by
  * this file and all files that it depends on.
  **/
-@interface PB3MessagesRoot : GPBRootObject
+@interface GPBEMessagesRoot : GPBRootObject
 @end
 
-#pragma mark - PB3Load
+#pragma mark - GPBELoad
 
-typedef GPB_ENUM(PB3Load_FieldNumber) {
-  PB3Load_FieldNumber_Operation = 1,
-  PB3Load_FieldNumber_Command = 2,
-  PB3Load_FieldNumber_Handle = 3,
-  PB3Load_FieldNumber_Path = 4,
-  PB3Load_FieldNumber_Chunk = 5,
-  PB3Load_FieldNumber_Digest = 6,
-  PB3Load_FieldNumber_Ret = 15,
+typedef GPB_ENUM(GPBELoad_FieldNumber) {
+  GPBELoad_FieldNumber_Operation = 1,
+  GPBELoad_FieldNumber_Command = 2,
+  GPBELoad_FieldNumber_Handle = 3,
+  GPBELoad_FieldNumber_Path = 4,
+  GPBELoad_FieldNumber_Chunk = 5,
+  GPBELoad_FieldNumber_Digest = 6,
+  GPBELoad_FieldNumber_Ret = 15,
 };
 
-@interface PB3Load : GPBMessage
+@interface GPBELoad : GPBMessage
 
-@property(nonatomic, readwrite) PB3Load_Operation operation;
+@property(nonatomic, readwrite) GPBELoad_Operation operation;
 
-@property(nonatomic, readwrite) PB3Load_Command command;
+@property(nonatomic, readwrite) GPBELoad_Command command;
 
 @property(nonatomic, readwrite) int32_t handle;
 
@@ -119,45 +119,45 @@ typedef GPB_ENUM(PB3Load_FieldNumber) {
 
 @property(nonatomic, readwrite, copy, null_resettable) NSData *digest;
 
-@property(nonatomic, readwrite, strong, null_resettable) PB3Load *ret;
+@property(nonatomic, readwrite, strong, null_resettable) GPBELoad *ret;
 /** Test to see if @c ret has been set. */
 @property(nonatomic, readwrite) BOOL hasRet;
 
 @end
 
 /**
- * Fetches the raw value of a @c PB3Load's @c operation property, even
+ * Fetches the raw value of a @c GPBELoad's @c operation property, even
  * if the value was not defined by the enum at the time the code was generated.
  **/
-int32_t PB3Load_Operation_RawValue(PB3Load *message);
+int32_t GPBELoad_Operation_RawValue(GPBELoad *message);
 /**
- * Sets the raw value of an @c PB3Load's @c operation property, allowing
+ * Sets the raw value of an @c GPBELoad's @c operation property, allowing
  * it to be set to a value that was not defined by the enum at the time the code
  * was generated.
  **/
-void SetPB3Load_Operation_RawValue(PB3Load *message, int32_t value);
+void SetGPBELoad_Operation_RawValue(GPBELoad *message, int32_t value);
 
 /**
- * Fetches the raw value of a @c PB3Load's @c command property, even
+ * Fetches the raw value of a @c GPBELoad's @c command property, even
  * if the value was not defined by the enum at the time the code was generated.
  **/
-int32_t PB3Load_Command_RawValue(PB3Load *message);
+int32_t GPBELoad_Command_RawValue(GPBELoad *message);
 /**
- * Sets the raw value of an @c PB3Load's @c command property, allowing
+ * Sets the raw value of an @c GPBELoad's @c command property, allowing
  * it to be set to a value that was not defined by the enum at the time the code
  * was generated.
  **/
-void SetPB3Load_Command_RawValue(PB3Load *message, int32_t value);
+void SetGPBELoad_Command_RawValue(GPBELoad *message, int32_t value);
 
-#pragma mark - PB3Divide
+#pragma mark - GPBEDivide
 
-typedef GPB_ENUM(PB3Divide_FieldNumber) {
-  PB3Divide_FieldNumber_A = 1,
-  PB3Divide_FieldNumber_B = 2,
-  PB3Divide_FieldNumber_Ret = 15,
+typedef GPB_ENUM(GPBEDivide_FieldNumber) {
+  GPBEDivide_FieldNumber_A = 1,
+  GPBEDivide_FieldNumber_B = 2,
+  GPBEDivide_FieldNumber_Ret = 15,
 };
 
-@interface PB3Divide : GPBMessage
+@interface GPBEDivide : GPBMessage
 
 @property(nonatomic, readwrite) int32_t a;
 
@@ -167,40 +167,40 @@ typedef GPB_ENUM(PB3Divide_FieldNumber) {
 
 @end
 
-#pragma mark - PB3Person
+#pragma mark - GPBEPerson
 
-typedef GPB_ENUM(PB3Person_FieldNumber) {
-  PB3Person_FieldNumber_Name = 1,
-  PB3Person_FieldNumber_Age = 2,
-  PB3Person_FieldNumber_ChildrenArray = 3,
+typedef GPB_ENUM(GPBEPerson_FieldNumber) {
+  GPBEPerson_FieldNumber_Name = 1,
+  GPBEPerson_FieldNumber_Age = 2,
+  GPBEPerson_FieldNumber_ChildrenArray = 3,
 };
 
-@interface PB3Person : GPBMessage
+@interface GPBEPerson : GPBMessage
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *name;
 
 @property(nonatomic, readwrite) uint32_t age;
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<PB3Person*> *childrenArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<GPBEPerson*> *childrenArray;
 /** The number of items in @c childrenArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger childrenArray_Count;
 
 @end
 
-#pragma mark - PB3GetParent
+#pragma mark - GPBEGetParent
 
-typedef GPB_ENUM(PB3GetParent_FieldNumber) {
-  PB3GetParent_FieldNumber_Person = 1,
-  PB3GetParent_FieldNumber_Ret = 15,
+typedef GPB_ENUM(GPBEGetParent_FieldNumber) {
+  GPBEGetParent_FieldNumber_Person = 1,
+  GPBEGetParent_FieldNumber_Ret = 15,
 };
 
-@interface PB3GetParent : GPBMessage
+@interface GPBEGetParent : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) PB3Person *person;
+@property(nonatomic, readwrite, strong, null_resettable) GPBEPerson *person;
 /** Test to see if @c person has been set. */
 @property(nonatomic, readwrite) BOOL hasPerson;
 
-@property(nonatomic, readwrite, strong, null_resettable) PB3Person *ret;
+@property(nonatomic, readwrite, strong, null_resettable) GPBEPerson *ret;
 /** Test to see if @c ret has been set. */
 @property(nonatomic, readwrite) BOOL hasRet;
 
