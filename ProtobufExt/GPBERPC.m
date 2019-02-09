@@ -7,6 +7,7 @@
 //
 
 #import "GPBERPC.h"
+#import "Payload.pbobjc.h"
 
 
 
@@ -19,11 +20,118 @@
 
 @interface GPBERPCI ()
 
+@property NSEInputStreamReading *lengthReading;
+@property NSEInputStreamReading *payloadReading;
+
 @end
 
 
 
 @implementation GPBERPCI
+
+@dynamic delegates;
+
+- (void)updateState:(NSEOperationState)state {
+    [super updateState:state];
+    
+    [self.delegates gpbeRPCIDidUpdateState:self];
+    if (state == NSEOperationStateDidStart) {
+        [self.delegates gpbeRPCIDidStart:self];
+    } else if (state == NSEOperationStateDidCancel) {
+        [self.delegates gpbeRPCIDidCancel:self];
+    } else if (state == NSEOperationStateDidFinish) {
+        [self.delegates gpbeRPCIDidFinish:self];
+    }
+}
+
+- (void)updateProgress:(int64_t)completedUnitCount {
+    [super updateProgress:completedUnitCount];
+    
+    [self.delegates gpbeRPCIDidUpdateProgress:self];
+}
+
+#pragma mark - GPBERPCIDelegate
+
+- (void)gpbeRPCIDidStart:(GPBERPCI *)rpcI {
+    self.lengthReading = [self.parent.streams.inputStream.nseOperation readDataOfLength:4 timeout:0.0];
+    [self.lengthReading.delegates addObject:self];
+}
+
+#pragma mark - NSEInputStreamReadingDelegate
+
+- (void)nseInputStreamReadingDidFinish:(NSEInputStreamReading *)reading {
+    if ([reading isEqual:self.lengthReading]) {
+        if (reading.error) {
+            self.error = reading.error;
+            [self finish];
+        } else if (reading.isCancelled) {
+        } else {
+            uint32_t length = *(uint32_t *)reading.data.bytes;
+            self.payloadReading = [self.parent.streams.inputStream.nseOperation readDataOfLength:length timeout:0.0];
+            [self.payloadReading.delegates addObject:self];
+        }
+    } else if ([reading isEqual:self.payloadReading]) {
+        if (reading.error) {
+            self.error = reading.error;
+            [self finish];
+        } else if (reading.isCancelled) {
+        } else {
+            GPBEPayload *payload = [GPBEPayload parseFromData:reading.data error:nil];
+            self.type = payload.type;
+            self.serial = payload.serial;
+            self.responseSerial = payload.responseSerial;
+            if (payload.error.length > 0) {
+                NSArray<NSString *> *components = [payload.error componentsSeparatedByString:@"."];
+                self.responseError = [NSError errorWithDomain:components.firstObject code:components.lastObject.integerValue userInfo:nil];
+            } else {
+                NSString *name = [payload.message.typeURL.lastPathComponent stringByReplacingOccurrencesOfString:@"." withString:@""];
+                Class class = NSClassFromString(name);
+                if (self.type == NSERPCIOTypeReturn) {
+                    self.response = [payload.message unpackMessageClass:class error:nil];
+                } else {
+                    self.message = [payload.message unpackMessageClass:class error:nil];
+                }
+                
+                [self finish];
+            }
+        }
+    }
+}
+
+//- (void)read {
+//    self.operation = self.lengthReading = [self.parent.streams.input readDataOfMinLength:4 maxLength:4 timeout:DBL_MAX];
+//    [self.lengthReading waitUntilFinished];
+//    if (self.lengthReading.isCancelled) {
+//    } else if (self.lengthReading.error) {
+//        self.error = self.lengthReading.error;
+//    } else {
+//        uint32_t length = *(uint32_t *)self.lengthReading.data.bytes;
+//
+//        self.operation = self.reading = [self.parent.streams.input readDataOfMinLength:length maxLength:length timeout:DBL_MAX];
+//        [self.reading waitUntilFinished];
+//        if (self.reading.isCancelled) {
+//        } else if (self.reading.error) {
+//            self.error = self.reading.error;
+//        } else {
+//            GPBEPayload *payload = [GPBEPayload parseFromData:self.reading.data error:nil];
+//            self.type = payload.type;
+//            self.serial = payload.serial;
+//            self.responseSerial = payload.responseSerial;
+//            if (payload.error.length > 0) {
+//                NSArray<NSString *> *components = [payload.error componentsSeparatedByString:@":"];
+//                self.responseError = [NSError errorWithDomain:components.firstObject code:components.lastObject.integerValue userInfo:nil];
+//            } else {
+//                NSString *name = [payload.message.typeURL.lastPathComponent stringByReplacingOccurrencesOfString:@"." withString:@""];
+//                Class class = NSClassFromString(name);
+//                if (self.type == NSERPCOperationTypeReturn) {
+//                    self.response = [payload.message unpackMessageClass:class error:nil];
+//                } else {
+//                    self.message = [payload.message unpackMessageClass:class error:nil];
+//                }
+//            }
+//        }
+//    }
+//}
 
 @end
 
@@ -43,6 +151,27 @@
 
 
 @implementation GPBERPCO
+
+@dynamic delegates;
+
+- (void)updateState:(NSEOperationState)state {
+    [super updateState:state];
+    
+    [self.delegates gpbeRPCODidUpdateState:self];
+    if (state == NSEOperationStateDidStart) {
+        [self.delegates gpbeRPCODidStart:self];
+    } else if (state == NSEOperationStateDidCancel) {
+        [self.delegates gpbeRPCODidCancel:self];
+    } else if (state == NSEOperationStateDidFinish) {
+        [self.delegates gpbeRPCODidFinish:self];
+    }
+}
+
+- (void)updateProgress:(int64_t)completedUnitCount {
+    [super updateProgress:completedUnitCount];
+    
+    [self.delegates gpbeRPCODidUpdateProgress:self];
+}
 
 @end
 

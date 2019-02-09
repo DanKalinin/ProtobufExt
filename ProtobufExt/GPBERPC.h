@@ -28,18 +28,22 @@
 @protocol GPBERPCIDelegate <NSERPCIDelegate>
 
 @optional
-- (void)gpbeRPCIDidUpdateState:(NSERPC *)rpcI;
-- (void)gpbeRPCIDidStart:(NSERPC *)rpcI;
-- (void)gpbeRPCIDidCancel:(NSERPC *)rpcI;
-- (void)gpbeRPCIDidFinish:(NSERPC *)rpcI;
+- (void)gpbeRPCIDidUpdateState:(GPBERPCI *)rpcI;
+- (void)gpbeRPCIDidStart:(GPBERPCI *)rpcI;
+- (void)gpbeRPCIDidCancel:(GPBERPCI *)rpcI;
+- (void)gpbeRPCIDidFinish:(GPBERPCI *)rpcI;
 
-- (void)gpbeRPCIDidUpdateProgress:(NSERPC *)rpcI;
+- (void)gpbeRPCIDidUpdateProgress:(GPBERPCI *)rpcI;
 
 @end
 
 
 
 @interface GPBERPCI : NSERPCI <GPBERPCIDelegate>
+
+@property (readonly) NSMutableOrderedSet<GPBERPCIDelegate> *delegates;
+@property (readonly) NSEInputStreamReading *lengthReading;
+@property (readonly) NSEInputStreamReading *payloadReading;
 
 @end
 
@@ -55,18 +59,22 @@
 @protocol GPBERPCODelegate <NSERPCODelegate>
 
 @optional
-- (void)gpbeRPCODidUpdateState:(NSERPC *)rpcO;
-- (void)gpbeRPCODidStart:(NSERPC *)rpcO;
-- (void)gpbeRPCODidCancel:(NSERPC *)rpcO;
-- (void)gpbeRPCODidFinish:(NSERPC *)rpcO;
+- (void)gpbeRPCODidUpdateState:(GPBERPCO *)rpcO;
+- (void)gpbeRPCODidStart:(GPBERPCO *)rpcO;
+- (void)gpbeRPCODidCancel:(GPBERPCO *)rpcO;
+- (void)gpbeRPCODidFinish:(GPBERPCO *)rpcO;
 
-- (void)gpbeRPCODidUpdateProgress:(NSERPC *)rpcO;
+- (void)gpbeRPCODidUpdateProgress:(GPBERPCO *)rpcO;
 
 @end
 
 
 
 @interface GPBERPCO : NSERPCO <GPBERPCODelegate>
+
+@property (readonly) NSMutableOrderedSet<GPBERPCODelegate> *delegates;
+@property (readonly) NSEOutputStreamWriting *lengthWriting;
+@property (readonly) NSEOutputStreamWriting *payloadWriting;
 
 @end
 
