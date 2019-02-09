@@ -6,8 +6,30 @@
 //  Copyright © 2018 Dan Kalinin. All rights reserved.
 //
 
-#import <FoundationExt/FoundationExt.h>
-#import "Payload.pbobjc.h"
+#import "GPBEMain.h"
+
+@class GPBERPC;
+
+@protocol GPBERPCDelegate;
+
+
+
+
+
+
+
+
+
+
+@protocol GPBERPCDelegate <NSERPCDelegate>
+
+@end
+
+
+
+@interface GPBERPC : NSERPC <GPBERPCDelegate>
+
+@end
 
 //@class PB3RPCPayloadReading, PB3RPCPayloadWriting, PB3RPC;
 //

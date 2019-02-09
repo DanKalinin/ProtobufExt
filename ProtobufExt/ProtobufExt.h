@@ -12,6 +12,5 @@ FOUNDATION_EXPORT double ProtobufExtVersionNumber;
 FOUNDATION_EXPORT const unsigned char ProtobufExtVersionString[];
 
 #import <ProtobufExt/GPBERPC.h>
-
 #import <ProtobufExt/Payload.pbobjc.h>
 #import <ProtobufExt/Messages.pbobjc.h>

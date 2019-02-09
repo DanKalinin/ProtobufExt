@@ -17,6 +17,25 @@
 
 
 
+@interface GPBERPC ()
+
+@end
+
+
+
+@implementation GPBERPC
+
+@end
+
+
+
+
+
+
+
+
+
+
 //@interface PB3RPCPayloadReading ()
 //
 //@property HLPStreamReading *lengthReading;
