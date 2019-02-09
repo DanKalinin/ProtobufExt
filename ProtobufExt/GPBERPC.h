@@ -8,8 +8,12 @@
 
 #import "GPBEMain.h"
 
+@class GPBERPCI;
+@class GPBERPCO;
 @class GPBERPC;
 
+@protocol GPBERPCIDelegate;
+@protocol GPBERPCODelegate;
 @protocol GPBERPCDelegate;
 
 
@@ -21,7 +25,45 @@
 
 
 
-@protocol GPBERPCDelegate <NSERPCDelegate>
+@protocol GPBERPCIDelegate <NSERPCIDelegate>
+
+@end
+
+
+
+@interface GPBERPCI : NSERPCI <GPBERPCIDelegate>
+
+@end
+
+
+
+
+
+
+
+
+
+
+@protocol GPBERPCODelegate <NSERPCODelegate>
+
+@end
+
+
+
+@interface GPBERPCO : NSERPCO <GPBERPCODelegate>
+
+@end
+
+
+
+
+
+
+
+
+
+
+@protocol GPBERPCDelegate <NSERPCDelegate, NSERPCIDelegate, GPBERPCODelegate>
 
 @end
 
@@ -30,6 +72,18 @@
 @interface GPBERPC : NSERPC <GPBERPCDelegate>
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
 
 //@class PB3RPCPayloadReading, PB3RPCPayloadWriting, PB3RPC;
 //

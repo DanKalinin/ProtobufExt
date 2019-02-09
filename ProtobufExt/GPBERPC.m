@@ -17,6 +17,44 @@
 
 
 
+@interface GPBERPCI ()
+
+@end
+
+
+
+@implementation GPBERPCI
+
+@end
+
+
+
+
+
+
+
+
+
+
+@interface GPBERPCO ()
+
+@end
+
+
+
+@implementation GPBERPCO
+
+@end
+
+
+
+
+
+
+
+
+
+
 @interface GPBERPC ()
 
 @end
@@ -24,6 +62,14 @@
 
 
 @implementation GPBERPC
+
+- (Class)iClass {
+    return GPBERPCI.class;
+}
+
+- (Class)oClass {
+    return GPBERPCO.class;
+}
 
 @end
 
