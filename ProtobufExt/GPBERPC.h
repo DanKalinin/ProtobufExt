@@ -27,6 +27,14 @@
 
 @protocol GPBERPCIDelegate <NSERPCIDelegate>
 
+@optional
+- (void)gpbeRPCIDidUpdateState:(NSERPC *)rpcI;
+- (void)gpbeRPCIDidStart:(NSERPC *)rpcI;
+- (void)gpbeRPCIDidCancel:(NSERPC *)rpcI;
+- (void)gpbeRPCIDidFinish:(NSERPC *)rpcI;
+
+- (void)gpbeRPCIDidUpdateProgress:(NSERPC *)rpcI;
+
 @end
 
 
@@ -45,6 +53,14 @@
 
 
 @protocol GPBERPCODelegate <NSERPCODelegate>
+
+@optional
+- (void)gpbeRPCODidUpdateState:(NSERPC *)rpcO;
+- (void)gpbeRPCODidStart:(NSERPC *)rpcO;
+- (void)gpbeRPCODidCancel:(NSERPC *)rpcO;
+- (void)gpbeRPCODidFinish:(NSERPC *)rpcO;
+
+- (void)gpbeRPCODidUpdateProgress:(NSERPC *)rpcO;
 
 @end
 
