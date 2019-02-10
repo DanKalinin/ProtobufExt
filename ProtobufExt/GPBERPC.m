@@ -208,6 +208,27 @@
 
 @implementation GPBERPC
 
+@dynamic delegates;
+
+- (void)updateState:(NSEOperationState)state {
+    [super updateState:state];
+    
+    [self.delegates gpbeRPCDidUpdateState:self];
+    if (state == NSEOperationStateDidStart) {
+        [self.delegates gpbeRPCDidStart:self];
+    } else if (state == NSEOperationStateDidCancel) {
+        [self.delegates gpbeRPCDidCancel:self];
+    } else if (state == NSEOperationStateDidFinish) {
+        [self.delegates gpbeRPCDidFinish:self];
+    }
+}
+
+- (void)updateProgress:(int64_t)completedUnitCount {
+    [super updateProgress:completedUnitCount];
+    
+    [self.delegates gpbeRPCDidUpdateProgress:self];
+}
+
 - (Class)iClass {
     return GPBERPCI.class;
 }

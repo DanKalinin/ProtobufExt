@@ -89,10 +89,20 @@
 
 @protocol GPBERPCDelegate <NSERPCDelegate, NSERPCIDelegate, GPBERPCODelegate>
 
+@optional
+- (void)gpbeRPCDidUpdateState:(GPBERPC *)rpc;
+- (void)gpbeRPCDidStart:(GPBERPC *)rpc;
+- (void)gpbeRPCDidCancel:(GPBERPC *)rpc;
+- (void)gpbeRPCDidFinish:(GPBERPC *)rpc;
+
+- (void)gpbeRPCDidUpdateProgress:(GPBERPC *)rpc;
+
 @end
 
 
 
 @interface GPBERPC : NSERPC <GPBERPCDelegate>
+
+@property (readonly) NSMutableOrderedSet<GPBERPCDelegate> *delegates;
 
 @end
