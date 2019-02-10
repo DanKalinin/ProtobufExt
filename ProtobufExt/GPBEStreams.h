@@ -6,6 +6,7 @@
 //
 
 #import "GPBEObject.h"
+#import "GPBERPC.h"
 
 @class GPBEStreams;
 @class GPBEStreamsOperation;
@@ -22,6 +23,8 @@
 
 
 @interface NSEStreams (GPBE)
+
+@property (readonly) GPBEStreamsOperation *gpbeOperation;
 
 @end
 
@@ -54,5 +57,9 @@
 
 
 @interface GPBEStreamsOperation : NSEObjectOperation <GPBEStreamsDelegate>
+
+@property (readonly) GPBERPC *rpc;
+
+@property (weak, readonly) NSEStreams *object;
 
 @end

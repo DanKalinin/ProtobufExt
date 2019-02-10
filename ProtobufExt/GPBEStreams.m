@@ -18,7 +18,11 @@
 
 @implementation NSEStreams (GPBE)
 
+@dynamic gpbeOperation;
 
+- (Class)gpbeOperationClass {
+    return GPBEStreamsOperation.class;
+}
 
 @end
 
@@ -52,10 +56,23 @@
 
 @interface GPBEStreamsOperation ()
 
+@property GPBERPC *rpc;
+
 @end
 
 
 
 @implementation GPBEStreamsOperation
+
+@dynamic object;
+
+- (instancetype)initWithObject:(NSEStreams *)object {
+    self = [super initWithObject:object];
+    
+    self.rpc = [GPBERPC.alloc initWithStreams:object];
+    [self.rpc.delegates addObject:self.delegates];
+    
+    return self;
+}
 
 @end
