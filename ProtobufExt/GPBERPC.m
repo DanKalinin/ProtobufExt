@@ -157,9 +157,9 @@
         [payload.message packWithMessage:self.message error:nil];
     }
     
-    NSData *payloadData = payload.data.mutableCopy;
+    self.payloadData = payload.data.mutableCopy;
     
-    uint32_t length = (uint32_t)payloadData.length;
+    uint32_t length = (uint32_t)self.payloadData.length;
     NSMutableData *lengthData = [NSMutableData dataWithBytes:&length length:4];
     
     self.lengthWriting = [self.parent.streams.outputStream.nseOperation writeData:lengthData timeout:0.0];
